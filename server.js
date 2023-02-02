@@ -3,8 +3,9 @@ const path = require('path')
 const fs = require('fs')
 const PORT = 3001;
 const notes = require('./db/db.json');
-const { json } = require('body-parser');
-// const { application } = require('express');
+// const { json } = require('body-parser');
+// const { notStrictEqual } = require('assert');
+// // const { application } = require('express');
 
 const app = express();
 
@@ -50,6 +51,19 @@ app.post('/api/notes', (req, res) => {
             }   
         })
     }
+})
+
+// deletes note entries from db.json file
+app.delete('/api/notes/:id', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            const newNotes = JSON.parse(data)
+            const newData = newNotes.filter(obj => obj.id !== req.params.id)
+            fs.writeFile('./db/db.json', JSON.stringify(newData, null, 4), (err) => err ? console.log(err) : console.log('Success!'))
+        }
+    })
 })
 
 // get routes for anything that isn't /notes
