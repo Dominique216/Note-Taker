@@ -3,6 +3,7 @@ const path = require('path')
 const fs = require('fs')
 const PORT = 3001;
 const notes = require('./db/db.json');
+const { json } = require('body-parser');
 // const { application } = require('express');
 
 const app = express();
@@ -23,8 +24,33 @@ app.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (err, data) => {err ? console.log(err) : res.json(JSON.parse(data))})
 })
 
-// app.post()
+// will read db file and add new note obj to the array. It will also give the object a unique id.
+app.post('/api/notes', (req, res) => {
+    console.info(`${req.method} request received to submit notes`);
 
+    const { title, text } = req.body
+
+    if(title && text) {
+        const newNote = {
+            title, 
+            text, 
+            id: Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1),
+        }    
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
+            if(err) {
+                console.log(err)
+            } else {
+                const newData = JSON.parse(data);
+
+                newData.push(newNote);
+
+                fs.writeFile('./db/db.json', JSON.stringify(newData, null, 4), (err) => err ? console.log(err) : console.log('Success!'))
+            }   
+        })
+    }
+})
 
 // get routes for anything that isn't /notes
 app.get('*', (req, res) =>
