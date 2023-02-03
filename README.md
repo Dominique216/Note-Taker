@@ -15,7 +15,7 @@ To install on locally:
 5. Navigate to the local host url in your browser and use the application
 
 ## Usage
-[Link to webpage]
+[Link to webpage](https://uta-challenge-11.herokuapp.com/notes)
 ![Home Page](./public/assets/sc1.png)
 ![Notes Page](./public/assets/sc2.png)
 ## License
