@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path')
 const fs = require('fs')
-const PORT = 3001;
+const port = process.env.PORT || 3001;
 const notes = require('./db/db.json');
-// const { json } = require('body-parser');
-// const { notStrictEqual } = require('assert');
-// // const { application } = require('express');
 
 const app = express();
 
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -71,6 +69,6 @@ app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 )
 
-app.listen(PORT, () =>
-  console.log(`http://localhost:${PORT} `)
+app.listen(port, () =>
+  console.log(`http://localhost:${port} `)
 );
