@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Note-Taker
 ## Description 
-This application is a note taker. It can be used to write and take noets. The front end of this project was provided by UT. The backend was created using routes. When visitng the URL, the user should be presented with the homepage, then redirected to the note taking page. On this page, the user should be able to add, save, and delete notes. 
+This application is a note taker. It can be used to write and take notes. The front end of this project was provided by UT. The backend was created using routes. When visitng the URL, the user should be presented with the homepage, then redirected to the note taking page. On this page, the user should be able to add, save, and delete notes. 
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
